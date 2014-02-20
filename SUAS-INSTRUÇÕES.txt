@@ -1,2 +1,4 @@
-Coloque aqui suas instruções ou comentários que ache útil/relevantes para possamos ler 
-quando estivermos avaliando a sua solução
+para executar Ã© preciso do maven instalado.
+No terminal execute o comando maven mvn clean install jetty:run
+acesse http://localhost:8080/index.htm
+hÃ¡ um aquivo log.txt na pasta raiz, realize o uplado como exemplo.

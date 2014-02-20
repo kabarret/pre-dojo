@@ -33,6 +33,7 @@ public class FileUploadController extends SimpleFormController{
             File tmpFile = new File("temp.txt");
             multipartFile.transferTo(tmpFile);
             rank = new RankService().buildRank(tmpFile);
+            tmpFile.delete();
         }
 
         return new ModelAndView("FileUploadSuccess","rank",rank);

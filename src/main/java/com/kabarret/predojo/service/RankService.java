@@ -43,12 +43,12 @@ public class RankService {
 
     private void addKill(List<UserRank> rankMatches, Kill kill) {
         UserRank killerUser = getUserRank(rankMatches, kill.getUser());
-        killerUser.addKill(kill.getWeapon());
+        killerUser.addKill(kill.getWeapon(), kill.getTime());
     }
 
     private void addDeath(List<UserRank> rankMatches, Kill kill) {
         UserRank deadUser  = getUserRank(rankMatches, kill.getUserKilled());
-        deadUser.addDead();
+        deadUser.addDead(kill.getTime());
     }
 
     private UserRank getUserRank(List<UserRank> rankMatches, User user) {

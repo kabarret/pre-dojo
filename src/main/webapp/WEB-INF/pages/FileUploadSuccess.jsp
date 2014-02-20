@@ -17,6 +17,8 @@
             <th style="width: 100px">User</th>
             <th style="width: 100px">killCount</th>
             <th style="width: 100px">DeathCount</th>
+            <th style="width: 100px">Streak</th>
+            <th style="width: 100px">Favorite Weapon</th>
             <th></th>
         </tr>
         <c:forEach items="${rank.value}" var="userRank" varStatus="i">
@@ -25,7 +27,9 @@
                 <td style="text-align: center">${userRank.getUser().getName()}</td>
                 <td style="text-align: center">${userRank.getKillCount()}</td>
                 <td style="text-align: center">${userRank.getDeathsCount()}</td>
-                <th></th>
+                <td style="text-align: center">${userRank.getStreak()}</td>
+                <td style="text-align: center">${userRank.getFavoriteWeapon()}</td>
+                <th><c:if test="${userRank.isPerfect()}"><b>PERFECT</b></c:if></th>
             </tr>
         </c:forEach>
     </table>
