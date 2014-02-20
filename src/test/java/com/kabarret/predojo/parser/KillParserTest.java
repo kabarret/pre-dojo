@@ -2,12 +2,14 @@ package com.kabarret.predojo.parser;
 
 import com.kabarret.predojo.domain.Kill;
 import junit.framework.TestCase;
+import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class KillParserTest extends TestCase {
 
+    @Test
     public void testParser() throws ParseException {
 
         Kill kill = (Kill) new KillParser().parser("23/04/2013 15:36:04 - Roman killed Nick using M16");

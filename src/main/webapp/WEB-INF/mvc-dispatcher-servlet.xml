@@ -3,17 +3,37 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/WEB-INF/pages/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
+    <bean name="/index.htm" class="com.kabarret.predojo.controller.FileUploadController">
+        <property name="formView" value="FileUploadForm" />
+        <property name="successView" value="FileUploadSuccess" />
 
-	<bean name="/welcome.htm" 
-		class="com.kabarret.predojo.controller.HelloWorldController" />
+        <!-- Map a validator -->
+        <property name="validator">
+            <bean class="com.kabarret.predojo.validator.FileUploadValidator" />
+        </property>
+
+    </bean>
+
+    <!-- Register the Customer.properties -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="message" />
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="prefix">
+            <value>/WEB-INF/pages/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="1000000" />
+    </bean>
 
 </beans>

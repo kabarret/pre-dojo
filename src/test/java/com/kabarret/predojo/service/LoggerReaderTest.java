@@ -3,6 +3,7 @@ package com.kabarret.predojo.service;
 import com.kabarret.predojo.domain.LogLine;
 import com.kabarret.predojo.enums.LogInstruction;
 import junit.framework.TestCase;
+import org.junit.Test;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class LoggerReaderTest extends TestCase {
 
+    @Test
     public void testFileLogReader() throws Exception {
         BufferedWriter writer = null;
 

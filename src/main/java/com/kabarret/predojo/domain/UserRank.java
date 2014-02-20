@@ -1,18 +1,20 @@
 package com.kabarret.predojo.domain;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-public class UserRank {
+public class UserRank implements Comparable<UserRank>{
 
     private User user;
-    private List<Kill> killList;
+    private Integer killCount;
+    private Integer deathsCount;
+    private Map<String, Integer> weaponsKills;
 
-    public List<Kill> getKillList() {
-        return killList;
-    }
-
-    public void setKillList(List<Kill> killList) {
-        this.killList = killList;
+    public UserRank(User user) {
+        this.user = user;
+        this.killCount = 0;
+        this.deathsCount = 0;
+        this.weaponsKills = new HashMap<String, Integer>();
     }
 
     public User getUser() {
@@ -21,5 +23,63 @@ public class UserRank {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Integer getKillCount() {
+        return killCount;
+    }
+
+    public void setKillCount(Integer killCount) {
+        this.killCount = killCount;
+    }
+
+    public Integer getDeathsCount() {
+        return deathsCount;
+    }
+
+    public void setDeathsCount(Integer deathsCount) {
+        this.deathsCount = deathsCount;
+    }
+
+    public Map<String, Integer> getWeaponsKills() {
+        return weaponsKills;
+    }
+
+    public void setWeaponsKills(Map<String, Integer> weaponsKills) {
+        this.weaponsKills = weaponsKills;
+    }
+
+    public void addKill(String weapon){
+        this.killCount ++;
+        Integer killsOfWeapon = 1;
+        if (weaponsKills.get(weapon) != null){
+            killsOfWeapon += weaponsKills.get(weapon);
+            weaponsKills.remove(weapon);
+
+        };
+        weaponsKills.put(weapon, killsOfWeapon);
+    }
+
+    public void addDead(){
+        this.deathsCount ++;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserRank that = (UserRank) o;
+        if (user != null ? !user.equals(that.user) : that.user != null) return false;
+        return true;
+    }
+
+    @Override
+    public int compareTo(UserRank o) {
+        int comparator = o.getKillCount().compareTo(this.getKillCount());
+        if(comparator == 0){
+            comparator = o.getDeathsCount().compareTo(this.getDeathsCount());
+        }
+        return comparator;
     }
 }
