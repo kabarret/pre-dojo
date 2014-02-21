@@ -100,6 +100,15 @@ public class UserRank implements Comparable<UserRank>{
     }
 
 
+    public Boolean isPerfect(){
+        if(this.getDeathsCount() == 0 && this.getKillCount() > 0 ){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -116,14 +125,5 @@ public class UserRank implements Comparable<UserRank>{
             comparator = o.getDeathsCount().compareTo(this.getDeathsCount());
         }
         return comparator;
-    }
-
-    public Boolean isPerfect(){
-        if(this.getDeathsCount() == 0 && this.getKillCount() > 0 ){
-            return true;
-        }else{
-            return false;
-        }
-
     }
 }
